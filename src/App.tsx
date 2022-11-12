@@ -1,25 +1,27 @@
 import React from 'react';
-import logo from './logo.svg';
+import {Routes,Route,Navigate} from 'react-router-dom';
 import './App.css';
+import AddContact from './components/contacts/AddContact/AddContact';
+import ContactList from './components/contacts/ContactList/ContactList';
+import EditContact from './components/contacts/EditContact/EditContact';
+import ViewContact from './components/contacts/ViewContact/ViewContact';
+import NavBar from './components/NavBar/NavBar';
+import Spinner from './components/Spinner/Spinner';
 
-function App() {
+let App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <React.Fragment>
+
+      <NavBar />
+      <Routes>
+        <Route path={'/'} element={<Navigate to={'/contacts/list'}/>}/>
+        <Route path={'/contacts/list'} element={<ContactList/>} />
+        <Route path={'/contacts/add'} element={<AddContact/>} />
+        <Route path={'/contacts/view/:contactID'} element={<ViewContact/>} />
+        <Route path={'/contacts/edit/:contactID'} element={<EditContact/>} />
+      </Routes>
+
+    </React.Fragment>
   );
 }
 
